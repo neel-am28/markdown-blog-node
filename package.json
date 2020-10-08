@@ -1,0 +1,27 @@
+{
+  "name": "markdown-blog-node",
+  "version": "1.0.0",
+  "description": "a simple markdown blog using node",
+  "main": "server",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neel-am28/markdown-blog-node.git"
+  },
+  "author": "Neelam Chaubey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neel-am28/markdown-blog-node/issues"
+  },
+  "homepage": "https://github.com/neel-am28/markdown-blog-node#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
