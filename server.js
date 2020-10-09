@@ -2,6 +2,7 @@ const { urlencoded } = require("express");
 const express = require("express");
 const mongoose = require("mongoose");
 const articleRouter = require("./routes/articleRoutes");
+const Article = require('./models/article');
 const app = express();
 
 const port = process.env.PORT || 5000;
@@ -16,20 +17,13 @@ app.set("view engine", "ejs");
 
 app.use(urlencoded({extended: false}));
 
-app.get("/", (req, res) => {
-    const articles = [
-    {
-        title: "Hello World",
-        description: "Test description",
-        createdAt: new Date()
-    },
-    {
-        title: "Hello World 2",
-        description: "Test description 2",
-        createdAt: new Date()
+app.get("/", async (req, res) => {
+    try{
+        const articles = await Article.find().sort({ createdAt: 'desc' });
+        res.render("articles/index", { articles: articles });
+    } catch(err) {
+        console.log(err);    
     }
-];
-    res.render("articles/index", { articles: articles });
 });
 
 app.use("/articles", articleRouter);
