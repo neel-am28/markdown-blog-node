@@ -27,6 +27,7 @@ const articleSchema = new mongoose.Schema({
     }
 });
 
+// create slug by title
 articleSchema.pre('validate', function(next){
     if(this.title){
         this.slug = slugify(this.title, { lower: true, strict: true }); //strict allows to remove any special characters like (:, ;, etc)
@@ -35,3 +36,6 @@ articleSchema.pre('validate', function(next){
 });
 
 module.exports = mongoose.model("Article", articleSchema);
+
+// In mongodb: blog: database, articles: collection
+// In code: blog: database, Article: model
