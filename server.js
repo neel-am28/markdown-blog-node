@@ -9,9 +9,9 @@ const port = process.env.PORT || 5000;
 
 mongoose.connect('mongodb+srv://neelam:neelam1234@markdown-blog.dlxsi.mongodb.net/blog?retryWrites=true&w=majority', { 
     useNewUrlParser: true, 
-    useUnifiedTopology: true })
-        .then((result) => app.listen(port, () => console.log("Server running on port 3000")))
-        .catch((err) => console.log(err));
+    useUnifiedTopology: true 
+    }
+);
 
 app.set("view engine", "ejs");
 
@@ -27,3 +27,4 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/articles", articleRouter);
+app.listen(port, () => console.log("Server running on port 3000"));

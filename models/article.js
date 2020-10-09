@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const marked = require('marked');
+const slugify = require('slugify');
+
 
 const articleSchema = new mongoose.Schema({
     title:{
@@ -16,7 +19,19 @@ const articleSchema = new mongoose.Schema({
     createdAt:{
         type: Date,
         default: Date.now()
+    },
+    slug: {
+        type: String,
+        required: true,
+        unique: true
     }
+});
+
+articleSchema.pre('validate', function(next){
+    if(this.title){
+        this.slug = slugify(this.title, { lower: true, strict: true }); //strict allows to remove any special characters like (:, ;, etc)
+    }
+    next();
 });
 
 module.exports = mongoose.model("Article", articleSchema);
