@@ -16,8 +16,13 @@ mongoose.connect('mongodb+srv://neelam:neelam1234@markdown-blog.dlxsi.mongodb.ne
 );
 
 app.set("view engine", "ejs");
-
 app.use(urlencoded({extended: false}));
+
+let publicDir = require('path').join(__dirname, '/public');
+// console.log(publicDir);
+app.use(express.static(publicDir));
+
+
 
 app.use(methodOverride('_method'));
 
